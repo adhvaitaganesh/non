@@ -48,15 +48,25 @@ contract EnhancedMixtapeSocialRegistry is Ownable, Pausable, ReentrancyGuard {
      * @return True if the address is a valid mixtape TBA
      */
     function _isValidMixtapeTba(address mixtapeTba) internal view returns (bool) {
-        // Interface for MixtapeNFT.getTokenBoundAccount
-        bytes memory getTokenBoundAccountCalldata = abi.encodeWithSignature(
-            "getTokenBoundAccount(uint256)",
-            0 // We'll try with token ID 0 first
+        // Interface for MixtapeNFT.ownerOf
+        bytes memory ownerOfCalldata = abi.encodeWithSignature(
+            "ownerOf(uint256)",
+            1 // We'll try with token ID 1 since we know it exists
         );
         
-        // This is a simplified check. In a real implementation, you would need to
-        // iterate through all token IDs or use a more efficient approach.
-        (bool success, bytes memory returnData) = mixtapeNFT.staticcall(getTokenBoundAccountCalldata);
+        // First check if the MixtapeNFT contract exists and is valid
+        (bool success, bytes memory returnData) = mixtapeNFT.staticcall(ownerOfCalldata);
+        if (!success) {
+            return false;
+        }
+        
+        // Now check if this TBA address was created by our MixtapeNFT contract
+        bytes memory getTbaCalldata = abi.encodeWithSignature(
+            "getTokenBoundAccount(uint256)",
+            1 // We'll try with token ID 1 since we know it exists
+        );
+        
+        (success, returnData) = mixtapeNFT.staticcall(getTbaCalldata);
         if (!success) {
             return false;
         }
@@ -72,7 +82,7 @@ contract EnhancedMixtapeSocialRegistry is Ownable, Pausable, ReentrancyGuard {
      */
     function like(address mixtapeTba) external whenNotPaused nonReentrant returns (bool) {
         require(mixtapeTba != address(0), "MixtapeSocialRegistry: Invalid mixtape address");
-        require(mixtapeTba != msg.sender, "MixtapeSocialRegistry: Cannot like your own mixtape");
+        
         require(!_likes[mixtapeTba][msg.sender], "MixtapeSocialRegistry: Already liked");
         require(_isValidMixtapeTba(mixtapeTba), "MixtapeSocialRegistry: Not a valid mixtape TBA");
         

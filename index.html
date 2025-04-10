@@ -102,7 +102,7 @@
                         <h3>MixtapeRegistry.sol</h3>
                         <p>The registry contract for creating and managing token bound accounts for mixtape NFTs.</p>
                         <div class="code-container">
-                            <pre><code class="language-solidity" id="registry-code" color="white">Loading...</code></pre>
+                            <pre><code class="solidity" id="registry-code" color="white">Loading...</code></pre>
                         </div>
                     </div>
                     <div class="tab-pane" id="account-content">
@@ -162,7 +162,10 @@
                 </div>
             </div>
             <div class="findings-cta">
-                <a href="#" class="button" id="view-full-findings">View Full Findings</a>
+                <a href="#" class="button primary-button" id="view-full-findings">
+                    <span class="button-icon">📊</span>
+                    View Performance Analysis
+                </a>
             </div>
         </section>
 
@@ -233,3 +236,27 @@
     <script src="js/interactive.js"></script>
 </body>
 </html>
+
+<style>
+    .primary-button {
+        background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+        color: white;
+        padding: 12px 24px;
+        border-radius: var(--border-radius);
+        text-decoration: none;
+        font-weight: bold;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .primary-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .button-icon {
+        font-size: 1.2em;
+    }
+</style>

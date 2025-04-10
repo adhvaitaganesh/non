@@ -3,8 +3,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Add interactive architecture diagram
     initArchitectureDiagram();
     
-    // Add contract documentation link
+    // Add documentation and performance links
     addDocumentationLink();
+    addPerformanceLinks();
     
     // Add scroll animations
     initScrollAnimations();
@@ -74,7 +75,7 @@ function getContractDescription(contractType) {
     return descriptions[contractType] || 'No description available';
 }
 
-// Function to add documentation link
+// Function to add documentation and performance links
 function addDocumentationLink() {
     const nav = document.querySelector('nav ul');
     
@@ -85,6 +86,41 @@ function addDocumentationLink() {
         docLink.textContent = 'Documentation';
         docLi.appendChild(docLink);
         nav.appendChild(docLi);
+    }
+}
+
+// Function to add performance links
+function addPerformanceLinks() {
+    // Add to navigation
+    const nav = document.querySelector('nav ul');
+    if (nav) {
+        const perfLi = document.createElement('li');
+        const perfLink = document.createElement('a');
+        perfLink.href = 'performance.html';
+        perfLink.textContent = 'Performance';
+        perfLi.appendChild(perfLink);
+        nav.appendChild(perfLi);
+    }
+
+    // Update findings CTA
+    const findingsCta = document.querySelector('.findings-cta a');
+    if (findingsCta) {
+        findingsCta.href = 'performance.html';
+        findingsCta.addEventListener('click', function(e) {
+            e.preventDefault();
+            window.location.href = 'performance.html';
+        });
+    }
+
+    // Add performance link to footer
+    const footer = document.querySelector('footer .container');
+    if (footer) {
+        const perfFooterLink = document.createElement('a');
+        perfFooterLink.href = 'performance.html';
+        perfFooterLink.textContent = 'Performance Analysis';
+        perfFooterLink.style.marginLeft = '20px';
+        perfFooterLink.style.color = 'white';
+        footer.insertBefore(perfFooterLink, footer.lastElementChild);
     }
 }
 

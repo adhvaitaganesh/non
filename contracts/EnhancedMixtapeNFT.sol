@@ -8,10 +8,10 @@ import "@openzeppelin/contracts/security/Pausable.sol";
 import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 
 /**
- * @title MixtapeNFT
+ * @title EnhancedMixtapeNFT
  * @dev Enhanced ERC721 token representing mixtapes that can have token bound accounts
  */
-contract MixtapeNFT is ERC721URIStorage, Ownable, Pausable, ReentrancyGuard {
+contract EnhancedMixtapeNFT is ERC721URIStorage, Ownable, Pausable, ReentrancyGuard {
     using Counters for Counters.Counter;
     Counters.Counter private _tokenIds;
     

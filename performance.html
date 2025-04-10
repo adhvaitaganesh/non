@@ -49,6 +49,47 @@
             box-shadow: var(--box-shadow);
         }
 
+        .calculator-form {
+            background: white;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: var(--text-light);
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid var(--secondary-color);
+            border-radius: var(--border-radius);
+            font-size: 16px;
+        }
+
+        .calculator-form button {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        .calculator-form button:hover {
+            background: var(--secondary-color);
+        }
+
         .charts-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
@@ -226,6 +267,28 @@
         <div class="container">
             <div class="performance-overview">
                 <h2>Test Performance Overview</h2>
+                <div class="calculator-form">
+                    <h3>Gas Cost Calculator</h3>
+                    <form id="gasCalculator">
+                        <div class="form-group">
+                            <label for="ethPrice">ETH Price (USD):</label>
+                            <input type="number" id="ethPrice" value="1525.18" step="0.01">
+                        </div>
+                        <div class="form-group">
+                            <label for="maticPrice">MATIC Price (USD):</label>
+                            <input type="number" id="maticPrice" value="0.1823" step="0.0001">
+                        </div>
+                        <div class="form-group">
+                            <label for="ethGasPrice">ETH Gas Price (Gwei):</label>
+                            <input type="number" id="ethGasPrice" value="0.435" step="0.001">
+                        </div>
+                        <div class="form-group">
+                            <label for="polygonGasPrice">Polygon Gas Price (Gwei):</label>
+                            <input type="number" id="polygonGasPrice" value="30" step="1">
+                        </div>
+                        <button type="button" onclick="updateCalculations()">Update Calculations</button>
+                    </form>
+                </div>
                 <div class="charts-container">
                     <div class="chart-card">
                         <h3>Gas Usage Analysis</h3>
@@ -269,19 +332,19 @@
                                 </div>
                                 <div class="metric">
                                     <span class="metric-label">ETH Gas Price:</span>
-                                    <span class="metric-value">0.435 Gwei</span>
+                                    <span class="metric-value" id="ethGasPriceDisplay">0.435 Gwei</span>
                                 </div>
                                 <div class="metric">
                                     <span class="metric-label">ETH Price:</span>
-                                    <span class="metric-value">$3,000</span>
+                                    <span class="metric-value" id="ethPriceDisplay">$1,525.18</span>
                                 </div>
                                 <div class="metric">
                                     <span class="metric-label">Polygon Gas Price:</span>
-                                    <span class="metric-value">30 Gwei</span>
+                                    <span class="metric-value" id="polygonGasPriceDisplay">30 Gwei</span>
                                 </div>
                                 <div class="metric">
                                     <span class="metric-label">MATIC Price:</span>
-                                    <span class="metric-value">$0.75</span>
+                                    <span class="metric-value" id="maticPriceDisplay">$0.1823</span>
                                 </div>
                             </div>
                         </div>
@@ -300,11 +363,11 @@
                                 </div>
                                 <div class="metric">
                                     <span class="metric-label">ETH Cost:</span>
-                                    <span class="metric-value">~$0.63</span>
+                                    <span class="metric-value" id="mixtapeEthCost">~$0.32</span>
                                 </div>
                                 <div class="metric">
                                     <span class="metric-label">Polygon Cost:</span>
-                                    <span class="metric-value">~$0.11</span>
+                                    <span class="metric-value" id="mixtapePolygonCost">~$0.0026</span>
                                 </div>
                                 <div class="metric">
                                     <span class="metric-label">Cost Reduction:</span>
@@ -330,11 +393,11 @@
                                 </div>
                                 <div class="metric">
                                     <span class="metric-label">ETH Cost:</span>
-                                    <span class="metric-value">~$0.077/track</span>
+                                    <span class="metric-value" id="trackEthCost">~$0.039/track</span>
                                 </div>
                                 <div class="metric">
                                     <span class="metric-label">Polygon Cost:</span>
-                                    <span class="metric-value">~$0.013/track</span>
+                                    <span class="metric-value" id="trackPolygonCost">~$0.00032/track</span>
                                 </div>
                                 <div class="metric">
                                     <span class="metric-label">Cost Reduction:</span>
@@ -361,11 +424,11 @@
                                 </div>
                                 <div class="metric">
                                     <span class="metric-label">ETH Cost:</span>
-                                    <span class="metric-value">~$0.13/play</span>
+                                    <span class="metric-value" id="playEthCost">~$0.066/play</span>
                                 </div>
                                 <div class="metric">
                                     <span class="metric-label">Polygon Cost:</span>
-                                    <span class="metric-value">~$0.022/play</span>
+                                    <span class="metric-value" id="playPolygonCost">~$0.00054/play</span>
                                 </div>
                                 <div class="metric">
                                     <span class="metric-label">Cost Reduction:</span>
@@ -397,11 +460,11 @@
                                 </div>
                                 <div class="metric">
                                     <span class="metric-label">ETH Cost:</span>
-                                    <span class="metric-value">~$0.095/like</span>
+                                    <span class="metric-value" id="likeEthCost">~$0.048/like</span>
                                 </div>
                                 <div class="metric">
                                     <span class="metric-label">Polygon Cost:</span>
-                                    <span class="metric-value">~$0.016/like</span>
+                                    <span class="metric-value" id="likePolygonCost">~$0.00039/like</span>
                                 </div>
                                 <div class="metric">
                                     <span class="metric-label">Cost Reduction:</span>
@@ -427,11 +490,11 @@
                                 </div>
                                 <div class="metric">
                                     <span class="metric-label">ETH Cost:</span>
-                                    <span class="metric-value">~$0.16/comment</span>
+                                    <span class="metric-value" id="commentEthCost">~$0.081/comment</span>
                                 </div>
                                 <div class="metric">
                                     <span class="metric-label">Polygon Cost:</span>
-                                    <span class="metric-value">~$0.027/comment</span>
+                                    <span class="metric-value" id="commentPolygonCost">~$0.00066/comment</span>
                                 </div>
                                 <div class="metric">
                                     <span class="metric-label">Cost Reduction:</span>
@@ -458,15 +521,15 @@
                             <div class="metrics">
                                 <div class="metric">
                                     <span class="metric-label">Average ETH Cost:</span>
-                                    <span class="metric-value">~$0.22</span>
+                                    <span class="metric-value" id="avgEthCost">~$0.11</span>
                                 </div>
                                 <div class="metric">
                                     <span class="metric-label">Average Polygon Cost:</span>
-                                    <span class="metric-value">~$0.04</span>
+                                    <span class="metric-value" id="avgPolygonCost">~$0.0009</span>
                                 </div>
                                 <div class="metric">
                                     <span class="metric-label">Average Reduction:</span>
-                                    <span class="metric-value" style="color: var(--success-color)">81.8%</span>
+                                    <span class="metric-value" id="avgReduction" style="color: var(--success-color)">99.2%</span>
                                 </div>
                             </div>
                             <div class="test-explanation">
@@ -647,6 +710,71 @@
                     }
                 }
             }
+        });
+
+        function updateCalculations() {
+            const ethPrice = parseFloat(document.getElementById('ethPrice').value);
+            const maticPrice = parseFloat(document.getElementById('maticPrice').value);
+            const ethGasPrice = parseFloat(document.getElementById('ethGasPrice').value);
+            const polygonGasPrice = parseFloat(document.getElementById('polygonGasPrice').value);
+
+            // Update displayed prices
+            document.getElementById('ethPriceDisplay').textContent = `$${ethPrice.toLocaleString()}`;
+            document.getElementById('maticPriceDisplay').textContent = `$${maticPrice.toFixed(4)}`;
+            document.getElementById('ethGasPriceDisplay').textContent = `${ethGasPrice.toLocaleString()} Gwei`;
+            document.getElementById('polygonGasPriceDisplay').textContent = `${polygonGasPrice.toLocaleString()} Gwei`;
+
+            // Gas costs in wei
+            const gasCosts = {
+                mixtape: 484457,
+                track: 59152,
+                play: 97980,
+                like: 71926,
+                comment: 120047
+            };
+
+            // Calculate costs for each operation
+            Object.entries(gasCosts).forEach(([operation, gas]) => {
+                const ethCost = (gas * ethGasPrice * ethPrice) / 1e9;
+                const polygonCost = (gas * polygonGasPrice * maticPrice) / 1e9;
+
+                document.getElementById(`${operation}EthCost`).textContent = `~$${ethCost.toFixed(3)}${operation === 'track' ? '/track' : operation === 'play' ? '/play' : operation === 'like' ? '/like' : operation === 'comment' ? '/comment' : ''}`;
+                document.getElementById(`${operation}PolygonCost`).textContent = `~$${polygonCost.toFixed(5)}${operation === 'track' ? '/track' : operation === 'play' ? '/play' : operation === 'like' ? '/like' : operation === 'comment' ? '/comment' : ''}`;
+            });
+
+            // Calculate averages
+            const avgEthCost = Object.values(gasCosts).reduce((sum, gas) => sum + (gas * ethGasPrice * ethPrice) / 1e9, 0) / Object.keys(gasCosts).length;
+            const avgPolygonCost = Object.values(gasCosts).reduce((sum, gas) => sum + (gas * polygonGasPrice * maticPrice) / 1e9, 0) / Object.keys(gasCosts).length;
+            const avgReduction = ((avgEthCost - avgPolygonCost) / avgEthCost) * 100;
+
+            document.getElementById('avgEthCost').textContent = `~$${avgEthCost.toFixed(2)}`;
+            document.getElementById('avgPolygonCost').textContent = `~$${avgPolygonCost.toFixed(4)}`;
+            document.getElementById('avgReduction').textContent = `${avgReduction.toFixed(1)}%`;
+
+            // Update chart data
+            updateCharts(ethPrice, maticPrice, ethGasPrice, polygonGasPrice);
+        }
+
+        function updateCharts(ethPrice, maticPrice, ethGasPrice, polygonGasPrice) {
+            const gasCosts = {
+                mixtape: 484457,
+                track: 59152,
+                play: 97980,
+                like: 71926,
+                comment: 120047
+            };
+
+            const ethCosts = Object.values(gasCosts).map(gas => (gas * ethGasPrice * ethPrice) / 1e9);
+            const polygonCosts = Object.values(gasCosts).map(gas => (gas * polygonGasPrice * maticPrice) / 1e9);
+
+            comparisonChart.data.datasets[0].data = ethCosts;
+            comparisonChart.data.datasets[1].data = polygonCosts;
+            comparisonChart.update();
+        }
+
+        // Initialize the calculator
+        document.addEventListener('DOMContentLoaded', function() {
+            updateCalculations();
         });
     </script>
 </body>

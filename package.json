@@ -1,0 +1,24 @@
+{
+  "name": "music-jukebox-dapp",
+  "version": "1.0.0",
+  "description": "Music Jukebox dApp using ERC-6551 token bound accounts",
+  "main": "index.js",
+  "scripts": {
+    "test": "hardhat test",
+    "compile": "hardhat compile"
+  },
+  "keywords": [
+    "ethereum",
+    "erc6551",
+    "nft",
+    "music",
+    "jukebox"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^3.0.0",
+    "@openzeppelin/contracts": "^4.9.0",
+    "hardhat": "^2.17.0"
+  }
+}

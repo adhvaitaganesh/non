@@ -1,0 +1,169 @@
+/* Additional styles for interactive elements */
+
+/* Architecture diagram interactions */
+.diagram-box {
+    cursor: pointer;
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.diagram-box.highlight {
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    z-index: 10;
+}
+
+.diagram-tooltip {
+    position: absolute;
+    bottom: -80px;
+    left: 0;
+    right: 0;
+    background-color: var(--dark-color);
+    color: white;
+    padding: 10px;
+    border-radius: var(--border-radius);
+    font-size: 0.9rem;
+    z-index: 100;
+    box-shadow: var(--box-shadow);
+    opacity: 0;
+    animation: fadeIn 0.3s ease forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Scroll animations */
+.section {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.section.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Code block enhancements */
+.code-container {
+    position: relative;
+}
+
+.copy-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 5px 10px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+.copy-button:hover {
+    opacity: 1;
+}
+
+.line-number {
+    display: inline-block;
+    width: 30px;
+    color: #636e72;
+    text-align: right;
+    padding-right: 10px;
+    margin-right: 10px;
+    border-right: 1px solid #636e72;
+    user-select: none;
+}
+
+/* Music icon animation */
+.music-icon {
+    transition: transform 0.5s ease;
+}
+
+.music-icon.pulse {
+    animation: pulse 1s ease;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+/* Markdown content styling */
+.markdown-content {
+    line-height: 1.6;
+}
+
+.markdown-content h1 {
+    font-size: 2.2rem;
+    margin: 1.5rem 0 1rem;
+    color: var(--primary-color);
+}
+
+.markdown-content h2 {
+    font-size: 1.8rem;
+    margin: 1.5rem 0 1rem;
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--accent-color);
+    padding-bottom: 0.5rem;
+}
+
+.markdown-content h3 {
+    font-size: 1.4rem;
+    margin: 1.2rem 0 0.8rem;
+    color: var(--primary-color);
+}
+
+.markdown-content h4 {
+    font-size: 1.2rem;
+    margin: 1rem 0 0.6rem;
+    color: var(--primary-color);
+}
+
+.markdown-content p {
+    margin-bottom: 1rem;
+}
+
+.markdown-content ul, 
+.markdown-content ol {
+    margin-bottom: 1rem;
+    padding-left: 2rem;
+}
+
+.markdown-content li {
+    margin-bottom: 0.5rem;
+}
+
+.markdown-content strong {
+    font-weight: 600;
+    color: var(--dark-color);
+}
+
+.markdown-content em {
+    font-style: italic;
+}
+
+/* Mobile responsiveness for interactive elements */
+@media (max-width: 768px) {
+    .diagram-tooltip {
+        bottom: -100px;
+        font-size: 0.8rem;
+    }
+    
+    .copy-button {
+        font-size: 0.7rem;
+        padding: 3px 8px;
+    }
+    
+    .line-number {
+        width: 25px;
+        font-size: 0.8rem;
+    }
+}

@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Jukebox dApp - ERC-6551 Implementation</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/interactive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/languages/solidity.min.js"></script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Music Jukebox dApp</h1>
+            <p class="subtitle">Smart Contract Implementation with ERC-6551 Token Bound Accounts</p>
+            <nav>
+                <ul>
+                    <li><a href="#overview">Overview</a></li>
+                    <li><a href="#architecture">Architecture</a></li>
+                    <li><a href="#contracts">Smart Contracts</a></li>
+                    <li><a href="#findings">Findings</a></li>
+                    <li><a href="#recommendations">Recommendations</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="overview" class="container section">
+            <h2>Project Overview</h2>
+            <div class="overview-content">
+                <div class="overview-text">
+                    <p>The Music Jukebox dApp is a decentralized application built on the Ethereum blockchain that leverages the ERC-6551 token bound accounts standard to create a pay-to-play music platform.</p>
+                    <p>In this architecture, each music track is minted as an NFT with its own token bound account (TBA). These TBAs can hold assets, manage rights, and interact with other contracts, creating a rich ecosystem for digital music ownership and consumption.</p>
+                    <p>The platform allows artists to monetize their music through a pay-to-play model, while listeners can interact with the music through likes, comments, and other social features.</p>
+                </div>
+                <div class="overview-image">
+                    <div class="image-placeholder">
+                        <div class="music-icon">
+                            <span>♫</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="architecture" class="container section">
+            <h2>Architecture</h2>
+            <div class="architecture-diagram">
+                <div class="diagram-box registry">
+                    <h3>MixtapeRegistry</h3>
+                    <p>Creates and manages token bound accounts</p>
+                </div>
+                <div class="diagram-arrow"></div>
+                <div class="diagram-box account">
+                    <h3>MixtapeAccount</h3>
+                    <p>Implementation for token bound accounts</p>
+                </div>
+                <div class="diagram-arrow"></div>
+                <div class="diagram-box nft">
+                    <h3>MixtapeNFT</h3>
+                    <p>ERC-721 tokens representing music tracks</p>
+                </div>
+                <div class="diagram-arrow down"></div>
+                <div class="diagram-box jukebox">
+                    <h3>MixtapeJukebox</h3>
+                    <p>Mother account managing platform fees and play history</p>
+                </div>
+                <div class="diagram-arrow left"></div>
+                <div class="diagram-box social">
+                    <h3>MixtapeSocialRegistry</h3>
+                    <p>Manages social interactions (likes, comments)</p>
+                </div>
+            </div>
+            <div class="architecture-description">
+                <p>The architecture consists of five main components:</p>
+                <ol>
+                    <li><strong>MixtapeRegistry</strong>: A registry contract for creating and managing token bound accounts for mixtape NFTs.</li>
+                    <li><strong>MixtapeAccount</strong>: An implementation contract for the token bound accounts, with rights management capabilities.</li>
+                    <li><strong>MixtapeNFT</strong>: An ERC-721 contract for creating and managing mixtape NFTs with TBA creation logic and pay-to-play functionality.</li>
+                    <li><strong>MixtapeJukebox</strong>: A mother account contract implementing platform fee management and play history tracking.</li>
+                    <li><strong>MixtapeSocialRegistry</strong>: A contract for managing social interactions with mixtape TBAs, including likes and comments.</li>
+                </ol>
+            </div>
+        </section>
+
+        <section id="contracts" class="container section">
+            <h2>Smart Contracts</h2>
+            <div class="contracts-tabs">
+                <div class="tabs">
+                    <button class="tab-button active" data-contract="registry">MixtapeRegistry</button>
+                    <button class="tab-button" data-contract="account">MixtapeAccount</button>
+                    <button class="tab-button" data-contract="nft">MixtapeNFT</button>
+                    <button class="tab-button" data-contract="jukebox">MixtapeJukebox</button>
+                    <button class="tab-button" data-contract="social">MixtapeSocialRegistry</button>
+                </div>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="registry-content">
+                        <h3>MixtapeRegistry.sol</h3>
+                        <p>The registry contract for creating and managing token bound accounts for mixtape NFTs.</p>
+                        <div class="code-container">
+                            <pre><code class="language-solidity" id="registry-code" color="white">Loading...</code></pre>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="account-content">
+                        <h3>MixtapeAccount.sol</h3>
+                        <p>The implementation contract for token bound accounts, with rights management capabilities.</p>
+                        <div class="code-container">
+                            <pre><code class="language-solidity" id="account-code">Loading...</code></pre>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="nft-content">
+                        <h3>EnhancedMixtapeNFT.sol</h3>
+                        <p>The enhanced NFT contract with TBA creation logic and pay-to-play functionality.</p>
+                        <div class="code-container">
+                            <pre><code class="language-solidity" id="nft-code">Loading...</code></pre>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="jukebox-content">
+                        <h3>MixtapeJukebox.sol</h3>
+                        <p>The mother account contract implementing platform fee management and play history tracking.</p>
+                        <div class="code-container">
+                            <pre><code class="language-solidity" id="jukebox-code">Loading...</code></pre>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="social-content">
+                        <h3>EnhancedMixtapeSocialRegistry.sol</h3>
+                        <p>The enhanced social registry contract for managing social interactions with mixtape TBAs.</p>
+                        <div class="code-container">
+                            <pre><code class="language-solidity" id="social-code">Loading...</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="findings" class="container section">
+            <h2>Key Insights</h2>
+            <div class="findings-grid">
+                <div class="finding-card">
+                    <div class="finding-icon">🔍</div>
+                    <h3>ERC-6551 Integration</h3>
+                    <p>Successfully implemented a comprehensive ERC-6551 architecture with a robust registry contract, account implementation, and TBA creation logic, enhancing the platform's capabilities.</p>
+                </div>
+                <div class="finding-card">
+                    <div class="finding-icon">🔒</div>
+                    <h3>Enhanced Security</h3>
+                    <p>Implemented comprehensive security measures including ownership verification, pause mechanisms, upgradeability patterns, and reentrancy protection to ensure platform integrity.</p>
+                </div>
+                <div class="finding-card">
+                    <div class="finding-icon">⚙️</div>
+                    <h3>Advanced Functionality</h3>
+                    <p>Developed sophisticated features including a pay-to-play mechanism, comprehensive metadata handling, rights management system, and mother account logic for improved platform operations.</p>
+                </div>
+                <div class="finding-card">
+                    <div class="finding-icon">⚡</div>
+                    <h3>Optimized Performance</h3>
+                    <p>Implemented efficient data structures and storage patterns to optimize gas usage while maintaining platform functionality and user experience.</p>
+                </div>
+            </div>
+            <div class="findings-cta">
+                <a href="#" class="button" id="view-full-findings">View Full Findings</a>
+            </div>
+        </section>
+
+        <section id="In Progress" class="container section">
+            <h2>Recommendations for Future Development</h2>
+            <div class="recommendations-list">
+                <div class="recommendation">
+                    <h3>Off-Chain Storage</h3>
+                    <p>Consider moving some data storage off-chain to reduce gas costs:</p>
+                    <ul>
+                        <li>Store mixtape metadata on IPFS and only keep the IPFS hash on-chain</li>
+                        <li>Use The Graph to index social interactions instead of storing them all on-chain</li>
+                    </ul>
+                </div>
+                <div class="recommendation">
+                    <h3>Advanced Rights Management</h3>
+                    <p>Enhance the rights management system:</p>
+                    <ul>
+                        <li>Implement automatic royalty distribution to multiple stakeholders</li>
+                        <li>Add support for time-based rights that can expire or change over time</li>
+                        <li>Implement different licensing options for different use cases</li>
+                    </ul>
+                </div>
+                <div class="recommendation">
+                    <h3>Enhanced User Experience</h3>
+                    <p>Improve the user experience:</p>
+                    <ul>
+                        <li>Consider adding a subscription model as an alternative to pay-per-play</li>
+                        <li>Allow users to create and share playlists of mixtapes</li>
+                        <li>Implement a recommendation system based on play history</li>
+                    </ul>
+                </div>
+                <div class="recommendation">
+                    <h3>Cross-Chain Compatibility</h3>
+                    <p>Explore cross-chain compatibility:</p>
+                    <ul>
+                        <li>Consider deploying on Layer 2 solutions for lower gas costs</li>
+                        <li>Implement bridges to allow mixtapes to be used across different blockchains</li>
+                    </ul>
+                </div>
+                <div class="recommendation">
+                    <h3>Governance</h3>
+                    <p>Add governance mechanisms:</p>
+                    <ul>
+                        <li>Implement a DAO for platform governance decisions</li>
+                        <li>Allow token holders to vote on platform changes and fee structures</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Music Jukebox dApp. All rights reserved.</p>
+            <p>Built with ERC-6551 Token Bound Accounts</p>
+        </div>
+    </footer>
+
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="modal-content"></div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/interactive.js"></script>
+</body>
+</html>

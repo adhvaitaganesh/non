@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Contract Documentation - Music Jukebox dApp</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/interactive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/languages/solidity.min.js"></script>
+    <style>
+        .documentation-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .contract-doc {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .contract-doc h2 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .function-list {
+            margin-top: 20px;
+        }
+        
+        .function-item {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        
+        .function-item:last-child {
+            border-bottom: none;
+        }
+        
+        .function-name {
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        
+        .function-description {
+            margin-top: 5px;
+            color: var(--text-light);
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Smart Contract Documentation</h1>
+            <p class="subtitle">Music Jukebox dApp - ERC-6551 Implementation</p>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Back to Home</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="documentation-container">
+        <a href="index.html" class="back-link button">← Back to Home</a>
+        
+        <div class="contract-doc">
+            <h2>MixtapeRegistry</h2>
+            <p>The MixtapeRegistry contract is responsible for creating and managing token bound accounts for mixtape NFTs. It implements the ERC-6551 registry standard.</p>
+            
+            <div class="function-list">
+                <div class="function-item">
+                    <div class="function-name">createAccount</div>
+                    <div class="function-description">Creates a new token bound account for a mixtape NFT</div>
+                </div>
+                <div class="function-item">
+                    <div class="function-name">account</div>
+                    <div class="function-description">Gets the address of a token bound account</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="contract-doc">
+            <h2>MixtapeAccount</h2>
+            <p>The MixtapeAccount contract is the implementation for token bound accounts. It provides functionality for rights management and executing transactions.</p>
+            
+            <div class="function-list">
+                <div class="function-item">
+                    <div class="function-name">initialize</div>
+                    <div class="function-description">Initializes the account with token information</div>
+                </div>
+                <div class="function-item">
+                    <div class="function-name">execute</div>
+                    <div class="function-description">Executes a transaction from the account</div>
+                </div>
+                <div class="function-item">
+                    <div class="function-name">token</div>
+                    <div class="function-description">Gets the token information</div>
+                </div>
+                <div class="function-item">
+                    <div class="function-name">owner</div>
+                    <div class="function-description">Gets the owner of the account</div>
+                </div>
+                <div class="function-item">
+                    <div class="function-name">setRights</div>
+                    <div class="function-description">Sets rights data for the mixtape</div>
+                </div>
+                <div class="function-item">
+                    <div class="function-name">getRights</div>
+                    <div class="function-description">Gets rights data for the mixtape</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="contract-doc">
+            <h2>EnhancedMixtapeNFT</h2>
+            <p>The EnhancedMixtapeNFT contract is an improved version of the original MixtapeNFT contract with TBA creation logic and pay-to-play functionality.</p>
+            
+            <div class="function-list">
+                <div class="function-item">
+                    <div class="function-name">createMixtape</div>
+                    <div class="function-description">Creates a new mixtape NFT with a token bound account</div>
+                </div>
+                <div class="function-item">
+                    <div class="function-name">playMixtape</div>
+                    <div class="function-description">Allows playing a mixtape by paying the required fee</div>
+                </div>
+                <div class="function-item">
+                    <div class="function-name">setPlayPrice</div>
+                    <div class="function-description">Sets the play price for a mixtape</div>
+                </div>
+                <div class="function-item">
+                    <div class="function-name">addTrack</div>
+                    <div class="function-description">Adds a track to a mixtape</div>
+                </div>
+                <div class="function-item">
+                    <div class="function-name">getTokenBoundAccount</div>
+                    <div class="function-description">Gets the token bound account address for a mixtape</div>
+                </div>
+                <div class="function-item">
+                    <div class="function-name">getPlayPrice</div>
+                    <div class="function-description">Gets the play price for a mixtape</div>
+                </div>
+                <div class="function-item">
+                    <div class="function-name">getMixtapeMetadata</div>
+                    <div class="function-description">Gets the metadata of a mixtape</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="contract-doc">
+            <h2>MixtapeJukebox</h2>
+            <p>The MixtapeJukebox contract is the mother account for the music jukebox dApp. It manages platform fees and play history.</p>
+            
+            <div class="function-list">
+                <div class="function-item">
+                    <div class="function-name">playMixtape</div>
+                    <div class="function-description">Plays a mixtape through the jukebox</div>
+                </div>
+                <div class="function-item">
+                    <div class="function-name">getPlayCount</div>
+                    <div class="function-description">Gets the play count for a mixtape</div>
+                </div>
+                <div class="function-item">
+                    <div class="function-name">getUserPlayHistory</div>
+                    <div class="function-description">Gets the play history for a user</div>
+                </div>
+                <div class="function-item">
+                    <div class="function-name">setPlatformFeePercentage</div>
+                    <div class="function-description">Sets the platform fee percentage</div>
+                </div>
+                <div class="function-item">
+                    <div class="function-name">withdrawFees</div>
+                    <div class="function-description">Withdraws platform fees</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="contract-doc">
+            <h2>EnhancedMixtapeSocialRegistry</h2>
+            <p>The EnhancedMixtapeSocialRegistry contract is an improved version of the original MixtapeSocialRegistry contract with TBA verification and better security.</p>
+            
+            <div class="function-list">
+                <div class="function-item">
+                    <div class="function-name">like</div>
+                    <div class="function-description">Likes a mixtape</div>
+                </div>
+                <div class="function-item">
+                    <div class="function-name">unlike</div>
+                    <div class="function-description">Unlikes a mixtape</div>
+                </div>
+                <div class="function-item">
+                    <div class="function-name">addComment</div>
+                    <div class="function-description">Adds a comment to a mixtape</div>
+                </div>
+                <div class="function-item">
+                    <div class="function-name">hasLiked</div>
+                    <div class="function-description">Checks if an address has liked a mixtape</div>
+                </div>
+                <div class="function-item">
+                    <div class="function-name">getLikesCount</div>
+                    <div class="function-description">Gets the number of likes a mixtape has received</div>
+                </div>
+                <div class="function-item">
+                    <div class="function-name">getComments</div>
+                    <div class="function-description">Gets the comments for a mixtape</div>
+                </div>
+                <div class="function-item">
+                    <div class="function-name">getCommentsCount</div>
+                    <div class="function-description">Gets the number of comments a mixtape has received</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Music Jukebox dApp. All rights reserved.</p>
+            <p>Built with ERC-6551 Token Bound Accounts</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize syntax highlighting
+            hljs.highlightAll();
+        });
+    </script>
+</body>
+</html>

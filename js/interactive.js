@@ -100,6 +100,14 @@ function addPerformanceLinks() {
         perfLink.textContent = 'Performance';
         perfLi.appendChild(perfLink);
         nav.appendChild(perfLi);
+
+        // Add test visualization link
+        const testLi = document.createElement('li');
+        const testLink = document.createElement('a');
+        testLink.href = 'test-visualization.html';
+        testLink.textContent = 'Test Results';
+        testLi.appendChild(testLink);
+        nav.appendChild(testLi);
     }
 
     // Update findings CTA
@@ -112,7 +120,7 @@ function addPerformanceLinks() {
         });
     }
 
-    // Add performance link to footer
+    // Add performance and test links to footer
     const footer = document.querySelector('footer .container');
     if (footer) {
         const perfFooterLink = document.createElement('a');
@@ -121,6 +129,13 @@ function addPerformanceLinks() {
         perfFooterLink.style.marginLeft = '20px';
         perfFooterLink.style.color = 'white';
         footer.insertBefore(perfFooterLink, footer.lastElementChild);
+
+        const testFooterLink = document.createElement('a');
+        testFooterLink.href = 'test-visualization.html';
+        testFooterLink.textContent = 'Test Results';
+        testFooterLink.style.marginLeft = '20px';
+        testFooterLink.style.color = 'white';
+        footer.insertBefore(testFooterLink, footer.lastElementChild);
     }
 }
 

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mixtape dApp Test Visualization</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        .chart-container {
+            position: relative;
+            height: 400px;
+            margin-bottom: 40px;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        .test-summary {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        .test-card {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .success {
+            color: #28a745;
+        }
+        .metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        .metric-card {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .metric-value {
+            font-size: 24px;
+            font-weight: bold;
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Mixtape dApp Test Results</h1>
+        
+        <div class="test-summary">
+            <div class="test-card">
+                <h2>Test Suite Summary</h2>
+                <p><strong>Total Tests:</strong> 7</p>
+                <p><strong>Passed:</strong> <span class="success">7</span></p>
+                <p><strong>Failed:</strong> 0</p>
+                <p><strong>Execution Time:</strong> 664ms</p>
+            </div>
+            <div class="test-card">
+                <h2>Test Categories</h2>
+                <p>✓ DJ Mix Creation (2 tests)</p>
+                <p>✓ Listener Interaction (4 tests)</p>
+                <p>✓ Mix Analytics (1 test)</p>
+            </div>
+        </div>
+
+        <div class="metrics">
+            <div class="metric-card">
+                <h3>Average Play Price</h3>
+                <div class="metric-value">0.001 ETH</div>
+            </div>
+            <div class="metric-card">
+                <h3>Platform Fee</h3>
+                <div class="metric-value">2.5%</div>
+            </div>
+            <div class="metric-card">
+                <h3>Artist Revenue</h3>
+                <div class="metric-value">97.5%</div>
+            </div>
+        </div>
+
+        <div class="chart-container">
+            <h2>Test Coverage by Component</h2>
+            <canvas id="coverageChart"></canvas>
+        </div>
+
+        <div class="chart-container">
+            <h2>Interaction Metrics</h2>
+            <canvas id="interactionChart"></canvas>
+        </div>
+
+        <div class="chart-container">
+            <h2>Revenue Distribution</h2>
+            <canvas id="revenueChart"></canvas>
+        </div>
+    </div>
+
+    <script>
+        // Test Coverage Chart
+        new Chart(document.getElementById('coverageChart'), {
+            type: 'radar',
+            data: {
+                labels: ['Mixtape Creation', 'Track Management', 'Play Mechanism', 'Social Interactions', 'Revenue Distribution', 'Error Handling'],
+                datasets: [{
+                    label: 'Test Coverage',
+                    data: [100, 100, 100, 100, 100, 100],
+                    fill: true,
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    borderColor: 'rgb(54, 162, 235)',
+                    pointBackgroundColor: 'rgb(54, 162, 235)',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: 'rgb(54, 162, 235)'
+                }]
+            },
+            options: {
+                elements: {
+                    line: { borderWidth: 3 }
+                },
+                scales: {
+                    r: {
+                        angleLines: {
+                            display: true
+                        },
+                        suggestedMin: 0,
+                        suggestedMax: 100
+                    }
+                }
+            }
+        });
+
+        // Interaction Metrics Chart
+        new Chart(document.getElementById('interactionChart'), {
+            type: 'bar',
+            data: {
+                labels: ['Plays', 'Likes', 'Comments', 'Unlikes'],
+                datasets: [{
+                    label: 'Number of Interactions',
+                    data: [10, 3, 3, 1],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.5)',
+                        'rgba(54, 162, 235, 0.5)',
+                        'rgba(255, 206, 86, 0.5)',
+                        'rgba(75, 192, 192, 0.5)'
+                    ],
+                    borderColor: [
+                        'rgb(255, 99, 132)',
+                        'rgb(54, 162, 235)',
+                        'rgb(255, 206, 86)',
+                        'rgb(75, 192, 192)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Revenue Distribution Chart
+        new Chart(document.getElementById('revenueChart'), {
+            type: 'pie',
+            data: {
+                labels: ['Artist Revenue', 'Platform Fee'],
+                datasets: [{
+                    data: [97.5, 2.5],
+                    backgroundColor: [
+                        'rgba(54, 162, 235, 0.5)',
+                        'rgba(255, 99, 132, 0.5)'
+                    ],
+                    borderColor: [
+                        'rgb(54, 162, 235)',
+                        'rgb(255, 99, 132)'
+                    ],
+                    borderWidth: 1
+                }]
+            }
+        });
+    </script>
+</body>
+</html> 

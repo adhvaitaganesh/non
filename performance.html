@@ -246,18 +246,50 @@
             margin-bottom: 5px;
             color: var(--text-light);
         }
+
+        .test-visualization-cta {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .test-visualization-cta h3 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+
+        .test-visualization-cta p {
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background: #2980b9;
+        }
     </style>
 </head>
 <body>
     <header>
         <div class="container">
             <h1>Performance Analysis</h1>
-            <p class="subtitle">Music Jukebox dApp - Test Results Visualization</p>
+            <p class="subtitle">Comprehensive metrics and insights for the Music Jukebox dApp</p>
             <nav>
                 <ul>
-                    <li><a href="index.html">Back to Home</a></li>
-                    <li><a href="testing.html">Testing Report</a></li>
+                    <li><a href="index.html">Home</a></li>
                     <li><a href="documentation.html">Documentation</a></li>
+                    <li><a href="test-visualization.html">Test Results</a></li>
                 </ul>
             </nav>
         </div>
@@ -266,41 +298,48 @@
     <main>
         <div class="container">
             <div class="performance-overview">
-                <h2>Test Performance Overview</h2>
-                <div class="calculator-form">
-                    <h3>Gas Cost Calculator</h3>
-                    <form id="gasCalculator">
-                        <div class="form-group">
-                            <label for="ethPrice">ETH Price (USD):</label>
-                            <input type="number" id="ethPrice" value="1525.18" step="0.01">
-                        </div>
-                        <div class="form-group">
-                            <label for="maticPrice">MATIC Price (USD):</label>
-                            <input type="number" id="maticPrice" value="0.1823" step="0.0001">
-                        </div>
-                        <div class="form-group">
-                            <label for="ethGasPrice">ETH Gas Price (Gwei):</label>
-                            <input type="number" id="ethGasPrice" value="0.435" step="0.001">
-                        </div>
-                        <div class="form-group">
-                            <label for="polygonGasPrice">Polygon Gas Price (Gwei):</label>
-                            <input type="number" id="polygonGasPrice" value="30" step="1">
-                        </div>
-                        <button type="button" onclick="updateCalculations()">Update Calculations</button>
-                    </form>
+                <h2>Performance Overview</h2>
+                <p>Detailed analysis of the Music Jukebox dApp's performance metrics and test results.</p>
+                
+                <div class="test-visualization-cta">
+                    <h3>Test Results Visualization</h3>
+                    <p>View detailed test results and performance metrics for the Music Jukebox dApp. Our interactive visualization provides insights into test coverage, execution times, and gas costs.</p>
+                    <a href="test-visualization.html" class="cta-button">View Test Results</a>
                 </div>
-                <div class="charts-container">
-                    <div class="chart-card">
-                        <h3>Gas Usage Analysis</h3>
-                        <div class="chart-container">
-                            <canvas id="gasUsageChart"></canvas>
-                        </div>
+            </div>
+            <div class="calculator-form">
+                <h3>Gas Cost Calculator</h3>
+                <form id="gasCalculator">
+                    <div class="form-group">
+                        <label for="ethPrice">ETH Price (USD):</label>
+                        <input type="number" id="ethPrice" value="1525.18" step="0.01">
                     </div>
-                    <div class="chart-card">
-                        <h3>Execution Time Analysis</h3>
-                        <div class="chart-container">
-                            <canvas id="executionTimeChart"></canvas>
-                        </div>
+                    <div class="form-group">
+                        <label for="maticPrice">MATIC Price (USD):</label>
+                        <input type="number" id="maticPrice" value="0.1823" step="0.0001">
+                    </div>
+                    <div class="form-group">
+                        <label for="ethGasPrice">ETH Gas Price (Gwei):</label>
+                        <input type="number" id="ethGasPrice" value="0.435" step="0.001">
+                    </div>
+                    <div class="form-group">
+                        <label for="polygonGasPrice">Polygon Gas Price (Gwei):</label>
+                        <input type="number" id="polygonGasPrice" value="30" step="1">
+                    </div>
+                    <button type="button" onclick="updateCalculations()">Update Calculations</button>
+                </form>
+            </div>
+            <div class="charts-container">
+                <div class="chart-card">
+                    <h3>Gas Usage Analysis</h3>
+                    <div class="chart-container">
+                        <canvas id="gasUsageChart"></canvas>
+                    </div>
+                </div>
+                <div class="chart-card">
+                    <h3>Execution Time Analysis</h3>
+                    <div class="chart-container">
+                        <canvas id="executionTimeChart"></canvas>
                     </div>
                 </div>
             </div>
